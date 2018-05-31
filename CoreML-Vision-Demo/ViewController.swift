@@ -7,19 +7,11 @@
 //
 
 import UIKit
+import DrawerKit
 import AVFoundation
 import Vision
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    let label: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Point to food!"
-        label.font = label.font.withSize(30)
-        return label
-    }()
-
     let top5Label: UILabel = {
         let top5Label = UILabel()
         top5Label.textColor = .white
@@ -32,26 +24,29 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
     var workItem: DispatchWorkItem?
     var enqueuedLabel: String?
+    var wasPresentedAtLeastOnce = false
+    var stopUpdates = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCaptureSession()
-        
-        view.addSubview(label)
         view.addSubview(top5Label)
         setupLabel()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.doModalPresentation()
+        }
     }
-    
-    
+
     func setupCaptureSession() {
-        
+
         // creates a new capture session
         let captureSession = AVCaptureSession()
-        
+
         // search for available capture devices
         let availableDevices = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices
-        
+
         // get capture device, add device input to capture session
         do {
             if let captureDevice = availableDevices.first {
@@ -60,24 +55,24 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         } catch {
             print(error.localizedDescription)
         }
-        
+
         // setup output, add output to capture session
         let captureOutput = AVCaptureVideoDataOutput()
         captureSession.addOutput(captureOutput)
-        
+
         captureOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-        
+
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.frame
         view.layer.addSublayer(previewLayer)
-        
+
         captureSession.startRunning()
     }
-    
+
     // called everytime a frame is captured
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let model = try? VNCoreMLModel(for: OperacionBikini().model) else { return }
-        let request = VNCoreMLRequest(model: model) { [unowned self] (finishedRequest, error) in
+        let request = VNCoreMLRequest(model: model) { finishedRequest, error in
             guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
 
             let label = results
@@ -112,23 +107,94 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.enqueuedLabel = label
         }
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
+
         // executes request
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
-    
+
     func setupLabel() {
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         top5Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         top5Label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
     }
 
     func didFind(label: String) {
-        self.label.text = label
+        guard !stopUpdates else { return }
+
+        foodViewController.foodLabel = label
+
+        if wasPresentedAtLeastOnce && foodViewController.presentingViewController == nil {
+            present(foodViewController, animated: true)
+        }
     }
 
     func didLoseFocus() {
-        self.label.text = ""
+        guard !stopUpdates else { return }
+
+        foodViewController.foodLabel = nil
+    }
+
+    private var drawerDisplayController: DrawerDisplayController?
+    private let foodViewController = FoodViewController(nibName: nil, bundle: nil)
+
+    func doModalPresentation() {
+        // you can provide the configuration values in the initialiser...
+        var configuration = DrawerConfiguration()
+
+//        configuration.totalDurationInSeconds = 3 // default is 0.4
+//        configuration.durationIsProportionalToDistanceTraveled = false
+        // default is UISpringTimingParameters()
+//        configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
+//        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 100) // default is .coversFullScreen
+//        configuration.supportsPartialExpansion = true
+//        configuration.dismissesInStages = true
+//        configuration.isDrawerDraggable = true
+//        configuration.isFullyPresentableByDrawerTaps = true
+//        configuration.numberOfTapsForFullDrawerPresentation = 1
+//        configuration.isDismissableByOutsideDrawerTaps = true
+//        configuration.numberOfTapsForOutsideDrawerDismissal = 1
+//        configuration.flickSpeedThreshold = 3
+//        configuration.upperMarkGap = 100 // default is 40
+//        configuration.lowerMarkGap =  80 // default is 40
+        configuration.maximumCornerRadius = 35
+
+//        var handleViewConfiguration = HandleViewConfiguration()
+//        handleViewConfiguration.autoAnimatesDimming = true
+//        handleViewConfiguration.backgroundColor = .gray
+//        handleViewConfiguration.size = CGSize(width: 40, height: 6)
+//        handleViewConfiguration.top = 8
+//        handleViewConfiguration.cornerRadius = .automatic
+//        configuration.handleViewConfiguration = handleViewConfiguration
+
+//        let borderColor = UIColor(red: 205.0/255.0, green: 206.0/255.0, blue: 210.0/255.0, alpha: 1)
+//        let drawerBorderConfiguration = DrawerBorderConfiguration(borderThickness: 0.5,
+//                                                                  borderColor: borderColor)
+//        configuration.drawerBorderConfiguration = drawerBorderConfiguration
+
+//        let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.25,
+//                                                                  shadowRadius: 4,
+//                                                                  shadowOffset: .zero,
+//                                                                  shadowColor: .black)
+//        configuration.drawerShadowConfiguration = drawerShadowConfiguration
+
+        drawerDisplayController = DrawerDisplayController(presentingViewController: self,
+                                                          presentedViewController: foodViewController,
+                                                          configuration: configuration,
+                                                          inDebugMode: false)
+
+        present(foodViewController, animated: true) {
+            self.wasPresentedAtLeastOnce = true
+        }
+    }
+}
+
+extension ViewController: DrawerAnimationParticipant {
+    var drawerAnimationActions: DrawerKit.DrawerAnimationActions {
+        return DrawerAnimationActions(prepare: { _ in
+            self.stopUpdates = true
+        }, cleanup: { (info: DrawerKit.DrawerAnimationInfo) in
+            if info.endDrawerState != .fullyExpanded {
+                self.stopUpdates = false
+            }
+        })
     }
 }
