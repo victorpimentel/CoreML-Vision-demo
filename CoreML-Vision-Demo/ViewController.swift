@@ -62,7 +62,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     // called everytime a frame is captured
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        guard let model = try? VNCoreMLModel(for: OperacionBikini().model) else { return }
         let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
             guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
             guard let Observation = results.first else { return }
