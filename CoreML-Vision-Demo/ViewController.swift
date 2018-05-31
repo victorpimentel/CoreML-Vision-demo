@@ -15,9 +15,19 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let label = UILabel()
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Point food!"
+        label.text = "Point to food!"
         label.font = label.font.withSize(30)
         return label
+    }()
+
+    let top5Label: UILabel = {
+        let top5Label = UILabel()
+        top5Label.textColor = .white
+        top5Label.translatesAutoresizingMaskIntoConstraints = false
+        top5Label.numberOfLines = 5
+        top5Label.text = ""
+        top5Label.font = top5Label.font.withSize(15)
+        return top5Label
     }()
 
     var workItem: DispatchWorkItem?
@@ -29,6 +39,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         setupCaptureSession()
         
         view.addSubview(label)
+        view.addSubview(top5Label)
         setupLabel()
     }
     
@@ -68,10 +79,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         guard let model = try? VNCoreMLModel(for: OperacionBikini().model) else { return }
         let request = VNCoreMLRequest(model: model) { [unowned self] (finishedRequest, error) in
             guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
+
             let label = results
                 .filter { $0.confidence > 0.5 }
                 .map { "\($0.identifier)" }
                 .joined(separator: "")
+
+            let top5 = results.prefix(5).map { String(format: "\($0.identifier): %.2f%%", $0.confidence * 100) }
+                .joined(separator: "\n")
 
             if self.enqueuedLabel != label {
                 self.workItem?.cancel()
@@ -81,12 +96,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 if label == "" {
                     workItem = DispatchWorkItem {
                         guard !workItem.isCancelled else { return }
-                        self.didLostFocus()
+                        self.didLoseFocus()
                     }
                 } else {
                     workItem = DispatchWorkItem {
                         guard !workItem.isCancelled else { return }
                         self.didFind(label: label)
+                        self.top5Label.text = top5
                     }
                 }
 
@@ -104,13 +120,15 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func setupLabel() {
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        top5Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        top5Label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
     }
 
     func didFind(label: String) {
         self.label.text = label
     }
 
-    func didLostFocus() {
+    func didLoseFocus() {
         self.label.text = ""
     }
 }
