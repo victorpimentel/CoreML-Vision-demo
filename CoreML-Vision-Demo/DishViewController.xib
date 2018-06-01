@@ -42,7 +42,7 @@
                         <constraint firstAttribute="height" constant="125" id="dUx-tN-Xey"/>
                     </constraints>
                 </view>
-                <stackView hidden="YES" opaque="NO" contentMode="top" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="TSb-z1-QEI">
+                <stackView opaque="NO" contentMode="top" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="TSb-z1-QEI">
                     <rect key="frame" x="16" y="163" width="343" height="404"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredientes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnc-wh-Iey" userLabel="InfoTitle">
