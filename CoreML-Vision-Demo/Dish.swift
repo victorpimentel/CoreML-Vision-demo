@@ -13,8 +13,21 @@ class Dish {
 
     var ingredients: [Food] = []
 
+    var type: FoodType {
+        if ingredients.contains(where: { $0.type == .hotFood }) {
+            return .hotFood
+        } else {
+            return .salad
+        }
+    }
+
     var title: String {
-        return "Ensalada" // "Plato Combinado"
+        switch type {
+        case .salad:
+            return "Ensalada"
+        case .hotFood:
+            return "Plato Combinado"
+        }
     }
 
     var totalCalories: Int {
@@ -34,13 +47,11 @@ class Dish {
     }
 
     var price: Int {
-        switch title {
-        case "Plato Combinado":
-            return 3
-        case "Ensalada":
+        switch type {
+        case .salad:
             return 2
-        default:
-            return 0
+        case .hotFood:
+            return 3
         }
     }
 }

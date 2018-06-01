@@ -21,7 +21,7 @@ class DishViewController: UIViewController {
         dismiss(animated: true)
     }
 
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
         dishTitle.text = Dish.current.title
         calories.text = "\(Dish.current.totalCalories)"
         fat.text = "\(Dish.current.totalFat)"
