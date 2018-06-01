@@ -22,17 +22,29 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return top5Label
     }()
 
+    let finishButton: UIButton = {
+        let finishButton = UIButton.init(type: UIButtonType.system)
+        finishButton.setTitleColor(.white, for: .normal)
+        finishButton.setTitle("Acabar", for: .normal)
+        finishButton.translatesAutoresizingMaskIntoConstraints = false
+        finishButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        finishButton.isHidden = true
+        return finishButton
+    }()
+
     var workItem: DispatchWorkItem?
     var enqueuedLabel: String?
     var wasPresentedAtLeastOnce = false
     var stopUpdates = false
+    var previousCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupCaptureSession()
         view.addSubview(top5Label)
-        setupLabel()
+        view.addSubview(finishButton)
+        setupConstraints()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.doModalPresentation()
@@ -112,9 +124,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
 
-    func setupLabel() {
+    func setupConstraints() {
         top5Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         top5Label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+
+        finishButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 32).isActive = true
+        finishButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
     }
 
     func didFind(label: String) {
@@ -185,6 +200,30 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.wasPresentedAtLeastOnce = true
         }
     }
+
+    func updateFinishButton() {
+        let count = Dish.current.ingredients.count
+
+        if count > 0 {
+            finishButton.isHidden = false
+
+            if previousCount != count {
+                previousCount = count
+
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.finishButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.25) {
+                        self.finishButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                })
+            }
+
+            finishButton.setTitle("Acabar (\(count))", for: .normal)
+        } else {
+            finishButton.isHidden = true
+        }
+    }
 }
 
 extension ViewController: DrawerAnimationParticipant {
@@ -196,6 +235,7 @@ extension ViewController: DrawerAnimationParticipant {
         }, cleanup: { info in
             if info.endDrawerState != .fullyExpanded {
                 self.stopUpdates = false
+                self.updateFinishButton()
             }
         })
     }
