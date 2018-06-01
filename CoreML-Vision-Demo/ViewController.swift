@@ -189,9 +189,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
 extension ViewController: DrawerAnimationParticipant {
     var drawerAnimationActions: DrawerKit.DrawerAnimationActions {
-        return DrawerAnimationActions(prepare: { _ in
-            self.stopUpdates = true
-        }, cleanup: { (info: DrawerKit.DrawerAnimationInfo) in
+        return DrawerAnimationActions(prepare: { info in
+            if info.endDrawerState != .partiallyExpanded {
+                self.stopUpdates = true
+            }
+        }, cleanup: { info in
             if info.endDrawerState != .fullyExpanded {
                 self.stopUpdates = false
             }

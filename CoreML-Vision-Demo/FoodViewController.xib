@@ -52,7 +52,7 @@
                         <constraint firstItem="G5g-gn-3TW" firstAttribute="leading" secondItem="AuI-pn-8R7" secondAttribute="leading" constant="86" id="oC7-h2-09r"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="top" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="M4f-ay-fnL">
+                <stackView hidden="YES" opaque="NO" contentMode="top" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="M4f-ay-fnL">
                     <rect key="frame" x="16" y="163" width="343" height="404"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Información nutricional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFc-Qk-d8i" userLabel="InfoTitle">
