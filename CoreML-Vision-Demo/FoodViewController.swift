@@ -12,23 +12,36 @@ import UIKit
 class FoodViewController: UIViewController {
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var addButton: UIButton?
+    @IBOutlet weak var calories: UILabel?
+    @IBOutlet weak var fat: UILabel?
+    @IBOutlet weak var proteine: UILabel?
+    @IBOutlet weak var carbohydrates: UILabel?
+    @IBOutlet weak var nutritionalTable: UIStackView?
 
-    var food: Food?
-
-    var foodLabel: String? {
-        get {
-            return label?.text
-        }
-        set {
-            food = Food(label: newValue)
-
+    var food: Food? {
+        didSet {
             if let food = food {
                 label?.text = food.label
+                calories?.text = "\(food.calories)"
+                fat?.text = "\(food.fat)"
+                proteine?.text = "\(food.proteine)"
+                carbohydrates?.text = "\(food.carbohydrates)"
+                nutritionalTable?.isHidden = false
                 addButton?.isHidden = false
             } else {
                 label?.text = "Buscando..."
+                nutritionalTable?.isHidden = true
                 addButton?.isHidden = true
             }
+        }
+    }
+
+    var foodLabel: String? {
+        get {
+            return food?.label
+        }
+        set {
+            food = Food(label: newValue)
         }
     }
 
@@ -37,22 +50,6 @@ class FoodViewController: UIViewController {
 
         addButton?.isHidden = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension FoodViewController: DrawerPresentable {
