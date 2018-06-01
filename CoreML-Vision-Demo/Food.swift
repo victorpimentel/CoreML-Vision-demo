@@ -70,7 +70,7 @@ extension Food {
         case "Espirales de Pasta":
             self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
         case "Maíz":
-            self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
+            self.init(label: "Not HotDog", calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
         case "Pimientos Verdes Fritos":
             self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
         case "Salsa Boloñesa":
@@ -102,7 +102,7 @@ extension Food {
         case "Pollo":
             self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
         case "Salsa de Queso":
-            self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
+            self.init(label: "¡Atrás, Satanas!", calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .salad)
         case "Judías Verdes con Bacon":
             self.init(label: label, calories: 0, fat: 0, proteine: 0, carbohydrates: 0, type: .hotFood)
         case "Pan":
