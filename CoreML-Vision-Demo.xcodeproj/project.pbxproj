@@ -16,6 +16,7 @@
 		67473A6720C089BA001875DA /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67473A6620C089BA001875DA /* DrawerKit.framework */; };
 		67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6920C08AC0001875DA /* FoodViewController.swift */; };
 		67473A6C20C08AC0001875DA /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67473A6A20C08AC0001875DA /* FoodViewController.xib */; };
+		67473A6E20C1490B001875DA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6D20C1490B001875DA /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		67473A6620C089BA001875DA /* DrawerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawerKit.framework; path = Carthage/Build/iOS/DrawerKit.framework; sourceTree = "<group>"; };
 		67473A6920C08AC0001875DA /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		67473A6A20C08AC0001875DA /* FoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
+		67473A6D20C1490B001875DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				4D5AB9C11F31533300099717 /* Assets.xcassets */,
 				4D5AB9C31F31533300099717 /* LaunchScreen.storyboard */,
 				4D5AB9C61F31533300099717 /* Info.plist */,
+				67473A6D20C1490B001875DA /* Food.swift */,
 			);
 			path = "CoreML-Vision-Demo";
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				4D5BE6C91F4F9D4300A108C3 /* Resnet50.mlmodel in Sources */,
 				67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */,
 				4D5AB9BB1F31533300099717 /* AppDelegate.swift in Sources */,
+				67473A6E20C1490B001875DA /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
