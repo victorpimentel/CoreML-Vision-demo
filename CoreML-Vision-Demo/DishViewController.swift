@@ -9,27 +9,34 @@
 import UIKit
 
 class DishViewController: UIViewController {
+    @IBOutlet weak var dishTitle: UILabel!
+    @IBOutlet weak var calories: UILabel!
+    @IBOutlet weak var fat: UILabel!
+    @IBOutlet weak var proteine: UILabel!
+    @IBOutlet weak var carbohydrates: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var ingredients: UIStackView!
+
+    @IBAction func addTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        dishTitle.text = Dish.current.title
+        calories.text = "\(Dish.current.totalCalories)"
+        fat.text = "\(Dish.current.totalFat)"
+        proteine.text = "\(Dish.current.totalProteine)"
+        carbohydrates.text = "\(Dish.current.totalCarbohydrates)"
+        price.text = "\(Dish.current.price)"
 
-        // Do any additional setup after loading the view.
+        for ingredient in Dish.current.ingredients {
+            let label = UILabel()
+            label.textColor = .black
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.numberOfLines = 1
+            label.text = ingredient.label
+            label.font = label.font.withSize(17)
+            ingredients.addArrangedSubview(label)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

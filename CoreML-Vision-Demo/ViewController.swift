@@ -29,6 +29,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         finishButton.translatesAutoresizingMaskIntoConstraints = false
         finishButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         finishButton.isHidden = true
+        finishButton.addTarget(self, action: #selector(finishTapped), for: .touchUpInside)
         return finishButton
     }()
 
@@ -223,6 +224,15 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         } else {
             finishButton.isHidden = true
         }
+    }
+
+    @objc func finishTapped() {
+        if foodViewController.presentingViewController != nil {
+            dismiss(animated: false)
+        }
+
+        let viewController = DishViewController(nibName: nil, bundle: nil)
+        present(viewController, animated: true)
     }
 }
 

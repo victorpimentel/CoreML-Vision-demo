@@ -12,4 +12,35 @@ class Dish {
     static let current = Dish()
 
     var ingredients: [Food] = []
+
+    var title: String {
+        return "Ensalada" // "Plato Combinado"
+    }
+
+    var totalCalories: Int {
+        return ingredients.reduce(0) { $0 + $1.calories }
+    }
+
+    var totalFat: Int {
+        return ingredients.reduce(0) { $0 + $1.fat }
+    }
+
+    var totalProteine: Int {
+        return ingredients.reduce(0) { $0 + $1.proteine }
+    }
+
+    var totalCarbohydrates: Int {
+        return ingredients.reduce(0) { $0 + $1.carbohydrates }
+    }
+
+    var price: Int {
+        switch title {
+        case "Plato Combinado":
+            return 3
+        case "Ensalada":
+            return 2
+        default:
+            return 0
+        }
+    }
 }
