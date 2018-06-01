@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D16BF0720C09CDF006353F0 /* Macronutrients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D16BF0620C09CDF006353F0 /* Macronutrients.swift */; };
+		3D16BF0920C09D4E006353F0 /* MacronutrientsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D16BF0820C09D4E006353F0 /* MacronutrientsRepository.swift */; };
+		3D685E7920C14909001477B8 /* OperacionBikini.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D685E7820C14909001477B8 /* OperacionBikini.mlmodel */; };
 		4D4C6F4C1F4A3BFC00A405A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4C6F4B1F4A3BFC00A405A9 /* ViewController.swift */; };
 		4D5AB9BB1F31533300099717 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AB9BA1F31533300099717 /* AppDelegate.swift */; };
 		4D5AB9C21F31533300099717 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D5AB9C11F31533300099717 /* Assets.xcassets */; };
 		4D5AB9C51F31533300099717 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5AB9C31F31533300099717 /* LaunchScreen.storyboard */; };
 		4D5BE6C91F4F9D4300A108C3 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D5BE6C81F4F9D4300A108C3 /* Resnet50.mlmodel */; };
-		67473A6220C053B4001875DA /* OperacionBikini.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6120C053B4001875DA /* OperacionBikini.mlmodel */; };
 		67473A6720C089BA001875DA /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67473A6620C089BA001875DA /* DrawerKit.framework */; };
 		67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6920C08AC0001875DA /* FoodViewController.swift */; };
 		67473A6C20C08AC0001875DA /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67473A6A20C08AC0001875DA /* FoodViewController.xib */; };
@@ -20,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D16BF0620C09CDF006353F0 /* Macronutrients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macronutrients.swift; sourceTree = "<group>"; };
+		3D16BF0820C09D4E006353F0 /* MacronutrientsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacronutrientsRepository.swift; sourceTree = "<group>"; };
+		3D685E7820C14909001477B8 /* OperacionBikini.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OperacionBikini.mlmodel; sourceTree = SOURCE_ROOT; };
 		4D4C6F4B1F4A3BFC00A405A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4D5AB9B71F31533300099717 /* CoreML-Vision-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreML-Vision-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5AB9BA1F31533300099717 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +32,6 @@
 		4D5AB9C41F31533300099717 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D5AB9C61F31533300099717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D5BE6C81F4F9D4300A108C3 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
-		67473A6120C053B4001875DA /* OperacionBikini.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OperacionBikini.mlmodel; sourceTree = "<group>"; };
 		67473A6620C089BA001875DA /* DrawerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawerKit.framework; path = Carthage/Build/iOS/DrawerKit.framework; sourceTree = "<group>"; };
 		67473A6920C08AC0001875DA /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		67473A6A20C08AC0001875DA /* FoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
@@ -70,8 +74,10 @@
 				67473A6A20C08AC0001875DA /* FoodViewController.xib */,
 				4D5AB9BA1F31533300099717 /* AppDelegate.swift */,
 				4D4C6F4B1F4A3BFC00A405A9 /* ViewController.swift */,
+				3D16BF0620C09CDF006353F0 /* Macronutrients.swift */,
+				3D16BF0820C09D4E006353F0 /* MacronutrientsRepository.swift */,
 				4D5BE6C81F4F9D4300A108C3 /* Resnet50.mlmodel */,
-				67473A6120C053B4001875DA /* OperacionBikini.mlmodel */,
+				3D685E7820C14909001477B8 /* OperacionBikini.mlmodel */,
 				4D5AB9C11F31533300099717 /* Assets.xcassets */,
 				4D5AB9C31F31533300099717 /* LaunchScreen.storyboard */,
 				4D5AB9C61F31533300099717 /* Info.plist */,
@@ -180,8 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4C6F4C1F4A3BFC00A405A9 /* ViewController.swift in Sources */,
-				67473A6220C053B4001875DA /* OperacionBikini.mlmodel in Sources */,
+				3D16BF0720C09CDF006353F0 /* Macronutrients.swift in Sources */,
+				3D16BF0920C09D4E006353F0 /* MacronutrientsRepository.swift in Sources */,
 				4D5BE6C91F4F9D4300A108C3 /* Resnet50.mlmodel in Sources */,
+				3D685E7920C14909001477B8 /* OperacionBikini.mlmodel in Sources */,
 				67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */,
 				4D5AB9BB1F31533300099717 /* AppDelegate.swift in Sources */,
 				67473A6E20C1490B001875DA /* Food.swift in Sources */,
