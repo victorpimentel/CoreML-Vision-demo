@@ -16,7 +16,9 @@ struct Food {
 }
 
 extension Food {
-    init?(label: String) {
+    init?(label: String?) {
+        guard let label = label else { return nil }
+
         switch label {
         case "Aceitunas":
             self.init(label: label, caloriesCount: 0, proteineCount: 0, carbohydratesCount: 0)

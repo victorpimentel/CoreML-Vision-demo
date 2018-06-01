@@ -13,13 +13,17 @@ class FoodViewController: UIViewController {
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var addButton: UIButton?
 
+    var food: Food?
+
     var foodLabel: String? {
         get {
             return label?.text
         }
         set {
-            if let newValue = newValue {
-                label?.text = newValue
+            food = Food(label: newValue)
+
+            if let food = food {
+                label?.text = food.label
                 addButton?.isHidden = false
             } else {
                 label?.text = "Buscando..."
