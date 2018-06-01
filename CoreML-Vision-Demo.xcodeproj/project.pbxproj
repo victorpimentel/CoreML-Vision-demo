@@ -19,6 +19,9 @@
 		67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6920C08AC0001875DA /* FoodViewController.swift */; };
 		67473A6C20C08AC0001875DA /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67473A6A20C08AC0001875DA /* FoodViewController.xib */; };
 		67473A6E20C1490B001875DA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A6D20C1490B001875DA /* Food.swift */; };
+		67473A7320C1560E001875DA /* DishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A7120C1560E001875DA /* DishViewController.swift */; };
+		67473A7420C1560E001875DA /* DishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67473A7220C1560E001875DA /* DishViewController.xib */; };
+		67473A7620C1561E001875DA /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67473A7520C1561E001875DA /* Dish.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		67473A6920C08AC0001875DA /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		67473A6A20C08AC0001875DA /* FoodViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
 		67473A6D20C1490B001875DA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		67473A7120C1560E001875DA /* DishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewController.swift; sourceTree = "<group>"; };
+		67473A7220C1560E001875DA /* DishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishViewController.xib; sourceTree = "<group>"; };
+		67473A7520C1561E001875DA /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,9 @@
 		4D5AB9B91F31533300099717 /* CoreML-Vision-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				67473A7520C1561E001875DA /* Dish.swift */,
+				67473A7120C1560E001875DA /* DishViewController.swift */,
+				67473A7220C1560E001875DA /* DishViewController.xib */,
 				67473A6920C08AC0001875DA /* FoodViewController.swift */,
 				67473A6A20C08AC0001875DA /* FoodViewController.xib */,
 				4D5AB9BA1F31533300099717 /* AppDelegate.swift */,
@@ -155,6 +164,7 @@
 			files = (
 				67473A6C20C08AC0001875DA /* FoodViewController.xib in Resources */,
 				4D5AB9C51F31533300099717 /* LaunchScreen.storyboard in Resources */,
+				67473A7420C1560E001875DA /* DishViewController.xib in Resources */,
 				4D5AB9C21F31533300099717 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,7 +200,9 @@
 				3D16BF0920C09D4E006353F0 /* MacronutrientsRepository.swift in Sources */,
 				4D5BE6C91F4F9D4300A108C3 /* Resnet50.mlmodel in Sources */,
 				3D685E7920C14909001477B8 /* OperacionBikini.mlmodel in Sources */,
+				67473A7320C1560E001875DA /* DishViewController.swift in Sources */,
 				67473A6B20C08AC0001875DA /* FoodViewController.swift in Sources */,
+				67473A7620C1561E001875DA /* Dish.swift in Sources */,
 				4D5AB9BB1F31533300099717 /* AppDelegate.swift in Sources */,
 				67473A6E20C1490B001875DA /* Food.swift in Sources */,
 			);

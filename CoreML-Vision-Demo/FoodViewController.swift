@@ -50,6 +50,13 @@ class FoodViewController: UIViewController {
 
         addButton?.isHidden = true
     }
+
+    @IBAction func buttonTapped(_ sender: Any) {
+        if let food = food {
+            Dish.current.ingredients.append(food)
+            presentingViewController?.dismiss(animated: true)
+        }
+    }
 }
 
 extension FoodViewController: DrawerPresentable {
