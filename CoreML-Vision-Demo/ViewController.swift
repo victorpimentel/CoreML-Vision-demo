@@ -18,6 +18,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         top5Label.translatesAutoresizingMaskIntoConstraints = false
         top5Label.numberOfLines = 5
         top5Label.text = ""
+        top5Label.isHidden = true
         top5Label.font = top5Label.font.withSize(15)
         return top5Label
     }()
@@ -233,6 +234,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
         let viewController = DishViewController(nibName: nil, bundle: nil)
         present(viewController, animated: true)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
